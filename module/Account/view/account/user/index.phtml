@@ -1,0 +1,22 @@
+<table class="table">
+
+ <tr>
+ <th>Id</th>
+ <th>Name</th>
+ <th>Email</th>
+ <th>Username</th>
+ <th>&nbsp;</th>
+ </tr>
+ <?php foreach ($records as $record) : ?>
+	 <tr>
+	 <td><?php echo $this->escapeHtml($record->getUserId());?></td>
+	 <td><?php echo $this->escapeHtml($record->getName());?></td>
+	 <td><?php echo $this->escapeHtml($record->getEmail());?></td>
+	 <td><?php echo $this->escapeHtml($record->getUsername());?></td>
+	 <td>
+	 	<a href="<?php echo $this->url('user_edit',array('action'=>'edit', 'id' => $record->getUserId));?>">Edit</a>
+	 	<a href="<?php echo $this->url('user_del',array('action'=>'delete', 'id' => $record->getUserId));?>">Delete</a>
+	 </td>
+	 </tr>
+ <?php endforeach; ?>
+</table>
