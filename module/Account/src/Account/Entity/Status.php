@@ -15,11 +15,11 @@ class Status
     /**
      * @var integer
      *
-     * @ORM\Column(name="status_id", type="integer", nullable=false)
+     * @ORM\Column(name="statusId", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $statusId;
+    private $statusid;
 
     /**
      * @var string
@@ -38,13 +38,13 @@ class Status
 
 
     /**
-     * Get statusId
+     * Get statusid
      *
      * @return integer 
      */
-    public function getStatusId()
+    public function getStatusid()
     {
-        return $this->statusId;
+        return $this->statusid;
     }
 
     /**

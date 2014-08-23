@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Users
  *
- * @ORM\Table(name="users", uniqueConstraints={@ORM\UniqueConstraint(name="username_UNIQUE", columns={"username"}), @ORM\UniqueConstraint(name="user_id_UNIQUE", columns={"user_id"}), @ORM\UniqueConstraint(name="name_UNIQUE", columns={"name"}), @ORM\UniqueConstraint(name="email_UNIQUE", columns={"email"})})
+ * @ORM\Table(name="users", uniqueConstraints={@ORM\UniqueConstraint(name="username_UNIQUE", columns={"username"}), @ORM\UniqueConstraint(name="user_id_UNIQUE", columns={"userId"}), @ORM\UniqueConstraint(name="name_UNIQUE", columns={"name"}), @ORM\UniqueConstraint(name="email_UNIQUE", columns={"email"})}, indexes={@ORM\Index(name="fk_users_roles_idx", columns={"roleId"}), @ORM\Index(name="fk_users_status1_idx", columns={"statusId"})})
  * @ORM\Entity
  */
 class Users
@@ -15,11 +15,11 @@ class Users
     /**
      * @var integer
      *
-     * @ORM\Column(name="user_id", type="integer", nullable=false)
+     * @ORM\Column(name="userId", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $userId;
+    private $userid;
 
     /**
      * @var string
@@ -50,29 +50,35 @@ class Users
     private $password;
 
     /**
-     * @var integer
+     * @var \Account\Entity\Roles
      *
-     * @ORM\Column(name="role_id", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Account\Entity\Roles")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="roleId", referencedColumnName="roleId")
+     * })
      */
-    private $roleId;
+    private $roleid;
 
     /**
-     * @var integer
+     * @var \Account\Entity\Status
      *
-     * @ORM\Column(name="status_id", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Account\Entity\Status")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="statusId", referencedColumnName="statusId")
+     * })
      */
-    private $statusId;
+    private $statusid;
 
 
 
     /**
-     * Get userId
+     * Get userid
      *
      * @return integer 
      */
-    public function getUserId()
+    public function getUserid()
     {
-        return $this->userId;
+        return $this->userid;
     }
 
     /**
@@ -168,48 +174,48 @@ class Users
     }
 
     /**
-     * Set roleId
+     * Set roleid
      *
-     * @param integer $roleId
+     * @param \Account\Entity\Roles $roleid
      * @return Users
      */
-    public function setRoleId($roleId)
+    public function setRoleid(\Account\Entity\Roles $roleid = null)
     {
-        $this->roleId = $roleId;
+        $this->roleid = $roleid;
 
         return $this;
     }
 
     /**
-     * Get roleId
+     * Get roleid
      *
-     * @return integer 
+     * @return \Account\Entity\Roles 
      */
-    public function getRoleId()
+    public function getRoleid()
     {
-        return $this->roleId;
+        return $this->roleid;
     }
 
     /**
-     * Set statusId
+     * Set statusid
      *
-     * @param integer $statusId
+     * @param \Account\Entity\Status $statusid
      * @return Users
      */
-    public function setStatusId($statusId)
+    public function setStatusid(\Account\Entity\Status $statusid = null)
     {
-        $this->statusId = $statusId;
+        $this->statusid = $statusid;
 
         return $this;
     }
 
     /**
-     * Get statusId
+     * Get statusid
      *
-     * @return integer 
+     * @return \Account\Entity\Status 
      */
-    public function getStatusId()
+    public function getStatusid()
     {
-        return $this->statusId;
+        return $this->statusid;
     }
 }

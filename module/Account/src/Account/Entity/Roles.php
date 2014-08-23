@@ -15,11 +15,11 @@ class Roles
     /**
      * @var integer
      *
-     * @ORM\Column(name="role_id", type="integer", nullable=false)
+     * @ORM\Column(name="roleId", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $roleId;
+    private $roleid;
 
     /**
      * @var string
@@ -31,13 +31,13 @@ class Roles
 
 
     /**
-     * Get roleId
+     * Get roleid
      *
      * @return integer 
      */
-    public function getRoleId()
+    public function getRoleid()
     {
-        return $this->roleId;
+        return $this->roleid;
     }
 
     /**
