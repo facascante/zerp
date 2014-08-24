@@ -32,7 +32,8 @@ return array(
         'invokables' => array(
             'Account\Controller\User' => 'Account\Controller\UserController',
             'Account\Controller\UserRest' => 'Account\Controller\UserRestController',
-            'Account\Controller\RoleRest' => 'Account\Controller\RoleRestController'
+            'Account\Controller\RoleRest' => 'Account\Controller\RoleRestController',
+            'Account\Controller\StatusRest' => 'Account\Controller\StatusRestController'
         ),
     ),
     'view_manager' => array(
@@ -101,6 +102,17 @@ return array(
                     'defaults' => array(
                         '__NAMESPACE__' => 'Account\Controller',
                         'controller'    => 'RoleRest',
+                        'action'     => 'list',
+                    ),
+                ),
+            ),
+            'rest_status_list' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route'    => '/account/api/status/list',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Account\Controller',
+                        'controller'    => 'StatusRest',
                         'action'     => 'list',
                     ),
                 ),

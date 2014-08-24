@@ -18,14 +18,32 @@ var TableEditable = function () {
             function editRow(oTable, nRow) {
                 var aData = oTable.fnGetData(nRow);
                 var jqTds = $('>td', nRow);
-              //  jqTds[0].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[0] + '">';
-                jqTds[1].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[1] + '">';
-                jqTds[2].innerHTML = '<input type="text" class="form-control input-medium" value="' + aData[2] + '">';
-                jqTds[3].innerHTML = '<input type="text" class="form-control input-medium" value="' + aData[3] + '">';
-                jqTds[4].innerHTML = '<select class="form-control input-small"></select>';
-                jqTds[5].innerHTML = '<select class="form-control input-small"></select>';
-                jqTds[6].innerHTML = '<a class="edit" href="">Save</a>';
-                jqTds[7].innerHTML = '<a class="cancel" href="">Cancel</a>';
+                ajaxGetUserStatusOptions({category:"users"},function(err,result){
+                	var statusOption = "";
+                	options = result.data;
+                	for(var i =0; i< options.length; i++){
+                		statusOption+="<option value="+options[i].statusId+">"+options[i].status+"</option>"
+                	}
+                	ajaxGetRoleOptions(function(err,result){
+                    	var roleOption = "";
+                    	options = result.data;
+                    	for(var i =0; i< options.length; i++){
+                    		roleOption+="<option value="+options[i].roleId+">"+options[i].role+"</option>"
+                    	}
+                    	
+                    	jqTds[1].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[1] + '">';
+                        jqTds[2].innerHTML = '<input type="text" class="form-control input-medium" value="' + aData[2] + '">';
+                        jqTds[3].innerHTML = '<input type="text" class="form-control input-medium" value="' + aData[3] + '">';
+                        jqTds[4].innerHTML = '<select class="form-control input-small">'+roleOption+'</select>';
+                        jqTds[5].innerHTML = '<select class="form-control input-small">'+statusOption+'</select>';
+                        jqTds[6].innerHTML = '<a class="edit" href="">Save</a>';
+                        jqTds[7].innerHTML = '<a class="cancel" href="">Cancel</a>';
+                    });
+                });
+                
+
+                
+                
             }
 
             function saveRow(oTable, nRow) {

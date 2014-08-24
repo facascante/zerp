@@ -52,6 +52,20 @@ class UserRestController extends AbstractRestfulController
             'data' => $this->get($id),
         ));
     }
+    public function listAction()
+    {
+        
+         $queryBuilder = $this->getEntityManager()->createQueryBuilder();
+         $queryBuilder->select('t')
+         ->from('Account\Entity\Users', 't');
+    
+         $results = $queryBuilder->getQuery()
+         ->getResult(\Doctrine\ORM\AbstractQuery::HYDRATE_ARRAY);
+        
+        return new JsonModel(array(
+            'data' => $data,
+        ));
+    }
 
 }
 
