@@ -30,7 +30,8 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Account\Controller\User' => 'Account\Controller\UserController'
+            'Account\Controller\User' => 'Account\Controller\UserController',
+            'Account\Controller\UserRest' => 'Account\Controller\UserRestController'
         ),
     ),
     'view_manager' => array(
@@ -75,6 +76,17 @@ return array(
                         '__NAMESPACE__' => 'Account\Controller',
                         'controller'    => 'User',
                         'action'     => 'del',
+                    ),
+                ),
+            ),
+            'rest_user_create' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route'    => '/account/api/user/add',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Account\Controller',
+                        'controller'    => 'UserRest',
+                        'action'     => 'create',
                     ),
                 ),
             ),
