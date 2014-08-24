@@ -31,7 +31,8 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Account\Controller\User' => 'Account\Controller\UserController',
-            'Account\Controller\UserRest' => 'Account\Controller\UserRestController'
+            'Account\Controller\UserRest' => 'Account\Controller\UserRestController',
+            'Account\Controller\RoleRest' => 'Account\Controller\RoleRestController'
         ),
     ),
     'view_manager' => array(
@@ -42,6 +43,9 @@ return array(
         'exception_template'       => 'error/index',
         'template_path_stack' => array(
             __DIR__ . '/../view',
+        ),
+        'strategies' => array(
+            'ViewJsonStrategy',
         ),
     ),
     'router' => array(
@@ -87,6 +91,17 @@ return array(
                         '__NAMESPACE__' => 'Account\Controller',
                         'controller'    => 'UserRest',
                         'action'     => 'create',
+                    ),
+                ),
+            ),
+            'rest_role_list' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route'    => '/account/api/role/list',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Account\Controller',
+                        'controller'    => 'RoleRest',
+                        'action'     => 'list',
                     ),
                 ),
             ),
