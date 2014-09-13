@@ -1,4 +1,6 @@
 <?php echo $this->doctype(); ?>
+<?php $children = $this->viewModel()->getCurrent()->getChildren(); 
+?>
 
 <!-- 
 Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.1.1
@@ -214,7 +216,7 @@ License: You must have a valid license purchased only from themeforest(the above
 				<div class="col-md-12">
 					<!-- BEGIN PAGE TITLE & BREADCRUMB-->
 					<h3 class="page-title">
-					Account <small>Users</small>
+					 <?php echo $children[0]->controller ?> <small><?php echo $children[0]->action ?></small>
 					</h3>
 					<!-- END PAGE TITLE & BREADCRUMB-->
 				</div>

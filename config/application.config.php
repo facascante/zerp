@@ -11,7 +11,11 @@ return array(
         'DoctrineModule',
         'DoctrineORMModule',
         'Application',
-        'Account',
+        'Realms',
+        'Products',
+        'Customers',
+        'Api',
+        'Modules'
     ),
     'module_listener_options' => array(
         'module_paths' => array(
