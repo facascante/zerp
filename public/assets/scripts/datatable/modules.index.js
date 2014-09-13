@@ -18,43 +18,33 @@ var TableEditable = function () {
             function editRow(oTable, nRow) {
                 var aData = oTable.fnGetData(nRow);
                 var jqTds = $('>td', nRow);
-                ajaxGetUserStatusOptions({category:"users"},function(err,result){
-                	var statusOption = "";
-                	options = result.data;
-                	for(var i =0; i< options.length; i++){
-                		statusOption+="<option value="+options[i].statusId+">"+options[i].status+"</option>"
-                	}
-                	ajaxGetRoleOptions(function(err,result){
-                    	var roleOption = "";
-                    	options = result.data;
-                    	for(var i =0; i< options.length; i++){
-                    		roleOption+="<option value="+options[i].roleId+">"+options[i].role+"</option>"
-                    	}
-                    	
-                    	jqTds[1].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[1] + '">';
-                        jqTds[2].innerHTML = '<input type="text" class="form-control input-medium" value="' + aData[2] + '">';
-                        jqTds[3].innerHTML = '<input type="text" class="form-control input-medium" value="' + aData[3] + '">';
-                        jqTds[4].innerHTML = '<select class="form-control input-small">'+roleOption+'</select>';
-                        jqTds[5].innerHTML = '<select class="form-control input-small">'+statusOption+'</select>';
-                        jqTds[6].innerHTML = '<a class="edit" href="">Save</a>';
-                        jqTds[7].innerHTML = '<a class="cancel" href="">Cancel</a>';
-                    });
+                ajaxGetRealmKeyOptions(function(err,result){
+                		var realmkeyOption = OptionsToHTML("intrealmid","strrealmkey",result.data,aData[2]);
+                    var statusOption = OptionsToHTML("intstatus","strstatus",
+                               [{intstatus:1,strstatus:"Active"},
+                                   {intstatus:0,strstatus:"Inactive"}],
+                               aData[1]);
+                    jqTds[1].innerHTML = '<input type="text" class="form-control input-medium" value="' + aData[1] + '">';
+                    jqTds[2].innerHTML = '<select class="form-control input-small">'+realmkeyOption+'</select>';
+                    jqTds[3].innerHTML = '<select class="form-control input-small">'+statusOption+'</select>';
+                    jqTds[4].innerHTML = '<a class="edit" href="">Save</a>';
+                    jqTds[5].innerHTML = '<a class="cancel" href="">Cancel</a>';
                 });
-                
 
                 
                 
             }
 
-            function saveRow(oTable, nRow) {
+            function saveRow(oTable, nRow,id) {
                 var jqInputs = $('input', nRow);
-                oTable.fnUpdate(jqInputs[0].value, nRow, 1, false);
-                oTable.fnUpdate(jqInputs[1].value, nRow, 2, false);
-                oTable.fnUpdate(jqInputs[2].value, nRow, 3, false);
-                oTable.fnUpdate(jqInputs[3].value, nRow, 4, false);
-                oTable.fnUpdate(jqInputs[4].value, nRow, 5, false);
-                oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 6, false);
-                oTable.fnUpdate('<a class="delete" href="">Delete</a>', nRow, 7, false);
+                var jqSelect = $('select', nRow);
+                oTable.fnUpdate(id, nRow, 0, false);
+                
+                oTable.fnUpdate(jqInputs[0].value, nRow,1, false);
+                oTable.fnUpdate(jqSelect[0].options[jqSelect[0].selectedIndex].innerHTML, nRow, 2, false);
+                oTable.fnUpdate(jqSelect[1].options[jqSelect[1].selectedIndex].innerHTML, nRow, 3, false);
+                oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 4, false);
+                oTable.fnUpdate('<a class="delete" href="">Delete</a>', nRow, 5, false);
                 oTable.fnDraw();
             }
 
@@ -103,7 +93,7 @@ var TableEditable = function () {
 
             $('#sample_editable_1_new').click(function (e) {
                 e.preventDefault();
-                var aiNew = oTable.fnAddData(['', '', '', '', '', '',
+                var aiNew = oTable.fnAddData(['', '', '', '',
                         '<a class="edit" href="">Edit</a>', '<a class="cancel new" data-mode="new" href="">Cancel</a>'
                 ]);
                 var nRow = oTable.fnGetNodes(aiNew[0]);
@@ -148,17 +138,21 @@ var TableEditable = function () {
                 } else if (nEditing == nRow && this.innerHTML == "Save") {
                     /* Editing this row and want to save it */
                 	var jqInputs = $('input', nRow);
+                  var jqSelects = $('select', nRow);
                 	var data = {
-              			'username' : jqInputs[0].value,
-               			'name' : jqInputs[1].value,
-                		'email' : jqInputs[2].value,
-                		'roleId' : jqInputs[3].value,
-                		'statusId' : jqInputs[4].value
-                    };
-                	ajaxCreateUser(data,function(err,result){
-                    	console.log(err,result);
-                    	saveRow(oTable, nEditing);
+              			'strrealmkey' : jqSelects[0].value,
+               			'strmodulename' : jqInputs[0].value,
+                		'intstatus' : jqSelects[1].value
+                  };
+                	ajaxCreateModules(data,function(err,result){
+                      if(err){
+                        alert(err);
+                      }
+                      else{
+                        saveRow(oTable, nEditing,result.id);
                         nEditing = null;
+                      }
+                    	
                     });
                     /*
                     $.ajax({

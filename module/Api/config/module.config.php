@@ -70,6 +70,17 @@ return array(
                     ),
                 ),
             ),
+          'realm_list' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route'    => '/api/realms/key/list',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Api\Controller',
+                        'controller'    => 'Realms',
+                        'action'     => 'getRealmList',
+                    ),
+                ),
+            ),
         ),
     ),
 );

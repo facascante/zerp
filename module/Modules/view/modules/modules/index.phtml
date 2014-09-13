@@ -57,7 +57,7 @@
 							<tr>
 							    <th>Id</th>
 								<th>Name</th>
-								<th>Realm Id</th>
+								<th>Realm Key</th>
 								<th>Status</th>
 								<th>Edit</th>
 								<th>Delete</th>
@@ -91,8 +91,8 @@
 <script src="/assets/scripts/ajax/users.js"></script>
 <?php 
     $this->inlineScript()
-        ->appendFile($this->basePath('/assets/scripts/datatable/realms.index.js'))
-        ->appendFile($this->basePath('/assets/scripts/ajax/realms.js'))
+        ->appendFile($this->basePath('/assets/scripts/datatable/modules.index.js'))
+        ->appendFile($this->basePath('/assets/scripts/ajax/modules.js'))
         ->appendFile($this->basePath('/assets/scripts/ajax/generic.js'))
 ?>
 <?php $this->inlineScript()->captureStart() ?>
@@ -100,4 +100,4 @@
         App.init();
         TableEditable.init();
     });
-<?php $this->inlineScript()->captureEnd() ?>Action "index", controller "Modules", module "Modules".
+<?php $this->inlineScript()->captureEnd() ?>

@@ -26,7 +26,7 @@ class RealmsController extends AbstractRestfulController
          }
          return $this->em;
     }
-    public function addAction()
+    public function addRealmAction()
     {
         $request = $this->getRequest();
         $realms = new Tblrealms();
@@ -43,11 +43,58 @@ class RealmsController extends AbstractRestfulController
              'id' => $newId,
         ));
     }
+    public function editRealmAction()
+    {
+        $request = $this->getRequest();
+        $realmTypes = $this->getEntityManager()
+          ->find('Api\Entity\Tblrealmtypes', $this->getRequest()->getPost('intrealmtypeid'));
+        $realms = $this->getEntityManager()
+          ->find('Api\Entity\Tblrealms', $this->getRequest()->getPost('intrealmid'));
+        $realms->setStrrealmkey($this->getRequest()->getPost('strrealmkey'));
+        $realms->setStrrealmsecret($this->getRequest()->getPost('strrealmsecret'));
+        $realms->setIntrealmtypeid($realmTypes);
+        $realms->setIntstatus($this->getRequest()->getPost('intstatus'));
+        $this->getEntityManager()->persist($realms);
+        $this->getEntityManager()->flush();
+        $newId = $realms->getIntrealmid();
+        return new JsonModel(array(
+             'id' => $newId,
+        ));
+    }
+  
+  public function addModulesAction()
+    {
+        $request = $this->getRequest();
+        $realms = new Tblrealms();
+        $realmTypes = $this->getEntityManager()
+          ->find('Api\Entity\Tblmodules', $this->getRequest()->getPost('strrealmkey'));
+        $realms->setStrmodulename($this->getRequest()->getPost('strmodulename'));
+        $realms->setIntstatus($this->getRequest()->getPost('intstatus'));
+        $this->getEntityManager()->persist($realms);
+        $this->getEntityManager()->flush();
+        $newId = $realms->getIntmoduleid();
+        return new JsonModel(array(
+             'id' => $newId,
+        ));
+    }
+  
     public function getRealmTypeListAction()
     {
       $queryBuilder = $this->getEntityManager()->createQueryBuilder();
         $queryBuilder->select('t')
         ->from('Api\Entity\Tblrealmtypes', 't'); 
+        $results = $queryBuilder->getQuery()
+        ->getResult(\Doctrine\ORM\AbstractQuery::HYDRATE_ARRAY);
+        return new JsonModel(array(
+            'data' => $results,
+        ));
+    }
+  
+    public function getRealmListAction()
+    {
+      $queryBuilder = $this->getEntityManager()->createQueryBuilder();
+        $queryBuilder->select('t')
+        ->from('Api\Entity\Tblrealms', 't'); 
         $results = $queryBuilder->getQuery()
         ->getResult(\Doctrine\ORM\AbstractQuery::HYDRATE_ARRAY);
         return new JsonModel(array(

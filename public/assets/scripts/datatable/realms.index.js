@@ -19,12 +19,12 @@ var TableEditable = function () {
                 var aData = oTable.fnGetData(nRow);
                 var jqTds = $('>td', nRow);
                 ajaxGetReamlTypeOptions(function(err,result){
-                		var roleOption = OptionsToHTML("intrealmtypeid","strrealmtype",result.data,aData[1]);
+                		var realmTypeOption = OptionsToHTML("intrealmtypeid","strrealmtype",result.data,aData[1]);
                     var statusOption = OptionsToHTML("intstatus","strstatus",
                                [{intstatus:1,strstatus:"Active"},
-                                   {intstatus:0,strstatus:"Inactive"}],
+                                {intstatus:0,strstatus:"Inactive"}],
                                aData[1]);
-                    jqTds[1].innerHTML = '<select class="form-control input-small">'+roleOption+'</select>';
+                    jqTds[1].innerHTML = '<select class="form-control input-small">'+realmTypeOption+'</select>';
                     jqTds[2].innerHTML = '<input type="text" class="form-control input-medium" value="' + aData[2] + '">';
                     jqTds[3].innerHTML = '<input type="text" class="form-control input-medium" value="' + aData[3] + '">';
                     jqTds[4].innerHTML = '<select class="form-control input-small">'+statusOption+'</select>';
@@ -38,11 +38,12 @@ var TableEditable = function () {
 
             function saveRow(oTable, nRow,id) {
                 var jqInputs = $('input', nRow);
+                var jqSelect = $('select', nRow);
                 oTable.fnUpdate(id, nRow, 0, false);
-                oTable.fnUpdate(jqInputs[0].value, nRow, 1, false);
-                oTable.fnUpdate(jqInputs[1].value, nRow, 2, false);
-                oTable.fnUpdate(jqInputs[2].value, nRow, 3, false);
-                oTable.fnUpdate(jqInputs[3].value, nRow, 4, false);
+                oTable.fnUpdate(jqSelect[0].options[jqSelect[0].selectedIndex].innerHTML, nRow, 1, false);
+                oTable.fnUpdate(jqInputs[0].value, nRow, 2, false);
+                oTable.fnUpdate(jqInputs[1].value, nRow, 3, false);
+                oTable.fnUpdate(jqSelect[1].options[jqSelect[1].selectedIndex].innerHTML, nRow, 4, false);
                 oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 5, false);
                 oTable.fnUpdate('<a class="delete" href="">Delete</a>', nRow, 6, false);
                 oTable.fnDraw();
@@ -155,18 +156,6 @@ var TableEditable = function () {
                       }
                     	
                     });
-                    /*
-                    $.ajax({
-                  	  type: "POST",
-                  	  url: "/account/api/user/add",
-                  	  data: data
-                  	}).done(function( msg ) {
-                  		saveRow(oTable, nEditing);
-                        nEditing = null;
-                  	}).fail(function( jqXHR, textStatus ) {
-                   	    alert( "Request failed: " + textStatus );
-                  	});
-                  	*/
                 } else {
                     /* No edit in progress - let's start one */
                     editRow(oTable, nRow);
