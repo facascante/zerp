@@ -1,6 +1,6 @@
 <?php
 
-namespace Realms\Entity;
+namespace Api\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -17,7 +17,7 @@ class Tblrealms
      *
      * @ORM\Column(name="intRealmID", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $intrealmid;
 
@@ -43,11 +43,9 @@ class Tblrealms
     private $intstatus = '1';
 
     /**
-     * @var \Realms\Entity\Tblrealmtypes
+     * @var \Api\Entity\Tblrealmtypes
      *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
-     * @ORM\OneToOne(targetEntity="Realms\Entity\Tblrealmtypes")
+     * @ORM\ManyToOne(targetEntity="Api\Entity\Tblrealmtypes")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="intRealmTypeID", referencedColumnName="intRealmTypeID")
      * })
@@ -55,19 +53,6 @@ class Tblrealms
     private $intrealmtypeid;
 
 
-
-    /**
-     * Set intrealmid
-     *
-     * @param integer $intrealmid
-     * @return Tblrealms
-     */
-    public function setIntrealmid($intrealmid)
-    {
-        $this->intrealmid = $intrealmid;
-
-        return $this;
-    }
 
     /**
      * Get intrealmid
@@ -151,10 +136,10 @@ class Tblrealms
     /**
      * Set intrealmtypeid
      *
-     * @param \Realms\Entity\Tblrealmtypes $intrealmtypeid
+     * @param \Api\Entity\Tblrealmtypes $intrealmtypeid
      * @return Tblrealms
      */
-    public function setIntrealmtypeid(\Realms\Entity\Tblrealmtypes $intrealmtypeid)
+    public function setIntrealmtypeid(\Api\Entity\Tblrealmtypes $intrealmtypeid = null)
     {
         $this->intrealmtypeid = $intrealmtypeid;
 
@@ -164,7 +149,7 @@ class Tblrealms
     /**
      * Get intrealmtypeid
      *
-     * @return \Realms\Entity\Tblrealmtypes 
+     * @return \Api\Entity\Tblrealmtypes 
      */
     public function getIntrealmtypeid()
     {

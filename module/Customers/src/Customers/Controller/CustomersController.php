@@ -10,7 +10,8 @@ class CustomersController extends AbstractActionController
 
     public function indexAction()
     {
-        return new ViewModel();
+        return new ViewModel();    
+  
     }
 
     public function addAction()

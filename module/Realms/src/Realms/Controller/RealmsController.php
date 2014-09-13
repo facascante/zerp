@@ -33,7 +33,7 @@ class RealmsController extends AbstractActionController
         'module' => 'Realms',
         'controller' => 'Realms',
         'action' => 'List',
-        'records' => $this->getEntityManager()->getRepository('Realms\Entity\Tblrealms')->findAll()
+        'records' => $this->getEntityManager()->getRepository('Api\Entity\Tblrealms')->findAll()
       );
       return new ViewModel($this->data);
     }

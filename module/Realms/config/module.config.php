@@ -2,32 +2,6 @@
 namespace Realms;
 
 return array(
-    'doctrine' => array(
-        'driver' => array(
-            __NAMESPACE__ . '_driver' => array(
-                'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
-                'cache' => 'array',
-                'paths' => array(__DIR__ . '/../src/' . __NAMESPACE__ . '/Entity',  // Define path of entities
-                )
-            ),
-            'orm_default' => array(
-                'drivers' => array(
-                    __NAMESPACE__ . '\Entity' => __NAMESPACE__ . '_driver'  // Define namespace of entities
-                )
-            )
-        ),
-        'configuration' => array(
-            'orm_default' => array(
-                'metadata_cache' => 'array',
-                'query_cache' => 'array',
-                'result_cache' => 'array',
-                'hydration_cache' => 'array',
-                'generate_proxies' => true,
-                'proxy_dir' => 'data/DoctrineORMModule/Proxy',
-                'proxy_namespace' => 'DoctrineORMModule\Proxy',
-            ),
-        ),
-    ),
     'controllers' => array(
         'invokables' => array(
             'Realms\Controller\Realms' => 'Realms\Controller\RealmsController',

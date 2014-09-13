@@ -15,7 +15,7 @@ class Tblprocess
     /**
      * @var integer
      *
-     * @ORM\Column(name="intProcessID", type="integer", nullable=false)
+     * @ORM\Column(name="intProcessID", type="integer", precision=0, scale=0, nullable=false, unique=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
      */
@@ -24,14 +24,14 @@ class Tblprocess
     /**
      * @var string
      *
-     * @ORM\Column(name="intProcessName", type="string", length=45, nullable=false)
+     * @ORM\Column(name="intProcessName", type="string", length=45, precision=0, scale=0, nullable=false, unique=false)
      */
     private $intprocessname;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="intStatus", type="integer", nullable=true)
+     * @ORM\Column(name="intStatus", type="integer", precision=0, scale=0, nullable=true, unique=false)
      */
     private $intstatus;
 
@@ -42,11 +42,10 @@ class Tblprocess
      * @ORM\GeneratedValue(strategy="NONE")
      * @ORM\OneToOne(targetEntity="Realms\Entity\Tblmodules")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="intModuleID", referencedColumnName="intModuleID")
+     *   @ORM\JoinColumn(name="intModuleID", referencedColumnName="intModuleID", nullable=true)
      * })
      */
     private $intmoduleid;
-
 
 
     /**

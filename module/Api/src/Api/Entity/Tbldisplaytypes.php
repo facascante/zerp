@@ -1,6 +1,6 @@
 <?php
 
-namespace Realms\Entity;
+namespace Api\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 

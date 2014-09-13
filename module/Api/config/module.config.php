@@ -1,5 +1,33 @@
 <?php
+namespace Api;
+
 return array(
+      'doctrine' => array(
+        'driver' => array(
+            __NAMESPACE__ . '_driver' => array(
+                'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+                'cache' => 'array',
+                'paths' => array(__DIR__ . '/../src/' . __NAMESPACE__ . '/Entity',  // Define path of entities
+                )
+            ),
+            'orm_default' => array(
+                'drivers' => array(
+                    __NAMESPACE__ . '\Entity' => __NAMESPACE__ . '_driver'  // Define namespace of entities
+                )
+            )
+        ),
+        'configuration' => array(
+            'orm_default' => array(
+                'metadata_cache' => 'array',
+                'query_cache' => 'array',
+                'result_cache' => 'array',
+                'hydration_cache' => 'array',
+                'generate_proxies' => true,
+                'proxy_dir' => 'data/DoctrineORMModule/Proxy',
+                'proxy_namespace' => 'DoctrineORMModule\Proxy',
+            ),
+        ),
+    ),
    'controllers' => array(
         'invokables' => array(
             'Api\Controller\Realms' => 'Api\Controller\RealmsController',
@@ -28,6 +56,17 @@ return array(
                         '__NAMESPACE__' => 'Api\Controller',
                         'controller'    => 'Realms',
                         'action'     => 'add',
+                    ),
+                ),
+            ),
+           'realm_type_list' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route'    => '/api/realms/type/list',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Api\Controller',
+                        'controller'    => 'Realms',
+                        'action'     => 'getRealmTypeList',
                     ),
                 ),
             ),

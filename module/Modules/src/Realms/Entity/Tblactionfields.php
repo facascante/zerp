@@ -15,7 +15,7 @@ class Tblactionfields
     /**
      * @var integer
      *
-     * @ORM\Column(name="intActionFieldID", type="integer", nullable=false)
+     * @ORM\Column(name="intActionFieldID", type="integer", precision=0, scale=0, nullable=false, unique=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
      */
@@ -24,23 +24,23 @@ class Tblactionfields
     /**
      * @var integer
      *
-     * @ORM\Column(name="intOrder", type="integer", nullable=true)
+     * @ORM\Column(name="intOrder", type="integer", precision=0, scale=0, nullable=true, unique=false)
      */
     private $intorder;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="intGroup", type="integer", nullable=true)
+     * @ORM\Column(name="intGroup", type="integer", precision=0, scale=0, nullable=true, unique=false)
      */
     private $intgroup;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="intStatus", type="integer", nullable=true)
+     * @ORM\Column(name="intStatus", type="integer", precision=0, scale=0, nullable=true, unique=false)
      */
-    private $intstatus = '1';
+    private $intstatus;
 
     /**
      * @var \Realms\Entity\Tblactionfieldtype
@@ -49,7 +49,7 @@ class Tblactionfields
      * @ORM\GeneratedValue(strategy="NONE")
      * @ORM\OneToOne(targetEntity="Realms\Entity\Tblactionfieldtype")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="intActionFieldTypeID", referencedColumnName="intActionFieldTypeID")
+     *   @ORM\JoinColumn(name="intActionFieldTypeID", referencedColumnName="intActionFieldTypeID", nullable=true)
      * })
      */
     private $intactionfieldtypeid;
@@ -61,7 +61,7 @@ class Tblactionfields
      * @ORM\GeneratedValue(strategy="NONE")
      * @ORM\OneToOne(targetEntity="Realms\Entity\Tblactions")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="intActionID", referencedColumnName="intActionID")
+     *   @ORM\JoinColumn(name="intActionID", referencedColumnName="intActionID", nullable=true)
      * })
      */
     private $intactionid;
@@ -73,7 +73,7 @@ class Tblactionfields
      * @ORM\GeneratedValue(strategy="NONE")
      * @ORM\OneToOne(targetEntity="Realms\Entity\Tblattributes")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="intAttributeID", referencedColumnName="intAttributeID")
+     *   @ORM\JoinColumn(name="intAttributeID", referencedColumnName="intAttributeID", nullable=true)
      * })
      */
     private $intattributeid;
@@ -85,11 +85,10 @@ class Tblactionfields
      * @ORM\GeneratedValue(strategy="NONE")
      * @ORM\OneToOne(targetEntity="Realms\Entity\Tbldisplaytypes")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="intDisplayTypeID", referencedColumnName="intDisplayTypeID")
+     *   @ORM\JoinColumn(name="intDisplayTypeID", referencedColumnName="intDisplayTypeID", nullable=true)
      * })
      */
     private $intdisplaytypeid;
-
 
 
     /**

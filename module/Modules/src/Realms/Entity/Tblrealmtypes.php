@@ -15,7 +15,7 @@ class Tblrealmtypes
     /**
      * @var integer
      *
-     * @ORM\Column(name="intRealmTypeID", type="integer", nullable=false)
+     * @ORM\Column(name="intRealmTypeID", type="integer", precision=0, scale=0, nullable=false, unique=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -24,17 +24,16 @@ class Tblrealmtypes
     /**
      * @var string
      *
-     * @ORM\Column(name="strRealmType", type="string", length=45, nullable=true)
+     * @ORM\Column(name="strRealmType", type="string", length=45, precision=0, scale=0, nullable=true, unique=false)
      */
     private $strrealmtype;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="intStatus", type="integer", nullable=true)
+     * @ORM\Column(name="intStatus", type="integer", precision=0, scale=0, nullable=true, unique=false)
      */
-    private $intstatus = '1';
-
+    private $intstatus;
 
 
     /**

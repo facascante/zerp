@@ -23,7 +23,7 @@ return array(
             'Customers_index' => array(
                 'type' => 'Literal',
                 'options' => array(
-                    'route'    => '/Customers',
+                    'route' => '/Customers',
                     'defaults' => array(
                         '__NAMESPACE__' => 'Customers\Controller',
                         'controller'    => 'Customers',

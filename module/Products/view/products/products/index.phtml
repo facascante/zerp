@@ -1,1 +1,19 @@
-Action "index", controller "Products", module "Products".
+<table class="table">
+ <tr>
+ <th>Item Code</th>
+ <th>Supplier Code</th>
+ <th>Name</th>
+ <th>&nbsp;</th>
+ </tr>
+ <?php foreach ($products as $product) : ?>
+	 <tr>
+	 <td><?php echo $this->escapeHtml($product->item_code);?></td>
+	 <td><?php echo $this->escapeHtml($product->supplier_code);?></td>
+	 <td><?php echo $this->escapeHtml($product->name);?></td>
+	 <td>
+	 	<a href="<?php echo $this->url('product_edit',array('action'=>'edit', 'id' => $product->id));?>">Edit</a>
+	 	<a href="<?php echo $this->url('product_del',array('action'=>'delete', 'id' => $product->id));?>">Delete</a>
+	 </td>
+	 </tr>
+ <?php endforeach; ?>
+</table>

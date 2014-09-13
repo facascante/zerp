@@ -1,6 +1,6 @@
 <?php
 
-namespace Realms\Entity;
+namespace Api\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -29,28 +29,28 @@ class Tblactionfieldoptions
     private $intstatus = '1';
 
     /**
-     * @var \Realms\Entity\Tblactionfields
+     * @var \Api\Entity\Tblobjects
      *
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
-     * @ORM\OneToOne(targetEntity="Realms\Entity\Tblactionfields")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="intActionFieldID", referencedColumnName="intActionFieldID")
-     * })
-     */
-    private $intactionfieldid;
-
-    /**
-     * @var \Realms\Entity\Tblobjects
-     *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
-     * @ORM\OneToOne(targetEntity="Realms\Entity\Tblobjects")
+     * @ORM\OneToOne(targetEntity="Api\Entity\Tblobjects")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="intObjectID", referencedColumnName="intObjectID")
      * })
      */
     private $intobjectid;
+
+    /**
+     * @var \Api\Entity\Tblactionfields
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="Api\Entity\Tblactionfields")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="intActionFieldID", referencedColumnName="intActionFieldID")
+     * })
+     */
+    private $intactionfieldid;
 
 
 
@@ -101,35 +101,12 @@ class Tblactionfieldoptions
     }
 
     /**
-     * Set intactionfieldid
-     *
-     * @param \Realms\Entity\Tblactionfields $intactionfieldid
-     * @return Tblactionfieldoptions
-     */
-    public function setIntactionfieldid(\Realms\Entity\Tblactionfields $intactionfieldid)
-    {
-        $this->intactionfieldid = $intactionfieldid;
-
-        return $this;
-    }
-
-    /**
-     * Get intactionfieldid
-     *
-     * @return \Realms\Entity\Tblactionfields 
-     */
-    public function getIntactionfieldid()
-    {
-        return $this->intactionfieldid;
-    }
-
-    /**
      * Set intobjectid
      *
-     * @param \Realms\Entity\Tblobjects $intobjectid
+     * @param \Api\Entity\Tblobjects $intobjectid
      * @return Tblactionfieldoptions
      */
-    public function setIntobjectid(\Realms\Entity\Tblobjects $intobjectid)
+    public function setIntobjectid(\Api\Entity\Tblobjects $intobjectid)
     {
         $this->intobjectid = $intobjectid;
 
@@ -139,10 +116,33 @@ class Tblactionfieldoptions
     /**
      * Get intobjectid
      *
-     * @return \Realms\Entity\Tblobjects 
+     * @return \Api\Entity\Tblobjects 
      */
     public function getIntobjectid()
     {
         return $this->intobjectid;
+    }
+
+    /**
+     * Set intactionfieldid
+     *
+     * @param \Api\Entity\Tblactionfields $intactionfieldid
+     * @return Tblactionfieldoptions
+     */
+    public function setIntactionfieldid(\Api\Entity\Tblactionfields $intactionfieldid)
+    {
+        $this->intactionfieldid = $intactionfieldid;
+
+        return $this;
+    }
+
+    /**
+     * Get intactionfieldid
+     *
+     * @return \Api\Entity\Tblactionfields 
+     */
+    public function getIntactionfieldid()
+    {
+        return $this->intactionfieldid;
     }
 }

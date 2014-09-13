@@ -4,10 +4,7 @@ namespace Products;
 return array(
     'controllers' => array(
         'invokables' => array(  
-            'Products\Controller\index' => 'Products\Controller\ProductsController',
-            'Products\Controller\add' => 'Products\Controller\ProductsController',
-            'Products\Controller\edit' => 'Products\Controller\ProductsController',
-            'Products\Controller\del' => 'Products\Controller\ProductsController'
+            'Products\Controller\Products' => 'Products\Controller\ProductsController',
         ),
     ),
     'view_manager' => array(
@@ -28,7 +25,7 @@ return array(
             'products_index' => array(
                 'type' => 'Literal',
                 'options' => array(
-                    'route'    => '/products/products',
+                    'route'    => '/products',
                     'defaults' => array(
                         '__NAMESPACE__' => 'Products\Controller',
                         'controller'    => 'Products',
@@ -47,14 +44,14 @@ return array(
                     ),
                 ),
             ),
-            'products_del' => array(
+            'products_delete' => array(
                 'type' => 'segment',
                 'options' => array(
-                    'route'    => '/products/del[/:id]',
+                    'route'    => '/products/delete[/:id]',
                     'defaults' => array(
                         '__NAMESPACE__' => 'Products\Controller',
                         'controller'    => 'Products',
-                        'action'     => 'del',
+                        'action'     => 'delete',
                     ),
                 ),
             ),

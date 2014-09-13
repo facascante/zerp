@@ -15,7 +15,7 @@ class Tblobjects
     /**
      * @var integer
      *
-     * @ORM\Column(name="intObjectID", type="integer", nullable=false)
+     * @ORM\Column(name="intObjectID", type="integer", precision=0, scale=0, nullable=false, unique=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -24,24 +24,23 @@ class Tblobjects
     /**
      * @var string
      *
-     * @ORM\Column(name="strObjectName", type="string", length=45, nullable=true)
+     * @ORM\Column(name="strObjectName", type="string", length=45, precision=0, scale=0, nullable=true, unique=false)
      */
     private $strobjectname;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="strObjectLabel", type="string", length=45, nullable=true)
+     * @ORM\Column(name="strObjectLabel", type="string", length=45, precision=0, scale=0, nullable=true, unique=false)
      */
     private $strobjectlabel;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="intStatus", type="integer", nullable=true)
+     * @ORM\Column(name="intStatus", type="integer", precision=0, scale=0, nullable=true, unique=false)
      */
-    private $intstatus = '1';
-
+    private $intstatus;
 
 
     /**

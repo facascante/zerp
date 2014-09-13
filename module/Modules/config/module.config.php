@@ -1,6 +1,8 @@
 <?php
+namespace Modules;
+
 return array(
-  'controllers' => array(
+    'controllers' => array(
         'invokables' => array(
             'Modules\Controller\Modules' => 'Modules\Controller\ModulesController',
         ),
@@ -20,14 +22,25 @@ return array(
     ),
     'router' => array(
         'routes' => array(
-            'Modules_index' => array(
+            'modules_index' => array(
                 'type' => 'Literal',
-                'options' => array(afaf
+                'options' => array(
                     'route'    => '/modules',
                     'defaults' => array(
                         '__NAMESPACE__' => 'Modules\Controller',
                         'controller'    => 'Modules',
                         'action'     => 'index',
+                    ),
+                ),
+            ),
+            'modules_add' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route'    => '/modules/add',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Modules\Controller',
+                        'controller'    => 'Modules',
+                        'action'     => 'add',
                     ),
                 ),
             ),

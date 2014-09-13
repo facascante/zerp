@@ -15,7 +15,7 @@ class Tblactions
     /**
      * @var integer
      *
-     * @ORM\Column(name="intActionID", type="integer", nullable=false)
+     * @ORM\Column(name="intActionID", type="integer", precision=0, scale=0, nullable=false, unique=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
      */
@@ -24,14 +24,14 @@ class Tblactions
     /**
      * @var string
      *
-     * @ORM\Column(name="strActionName", type="string", length=45, nullable=false)
+     * @ORM\Column(name="strActionName", type="string", length=45, precision=0, scale=0, nullable=false, unique=false)
      */
     private $stractionname;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="intStatus", type="integer", nullable=true)
+     * @ORM\Column(name="intStatus", type="integer", precision=0, scale=0, nullable=true, unique=false)
      */
     private $intstatus;
 
@@ -42,7 +42,7 @@ class Tblactions
      * @ORM\GeneratedValue(strategy="NONE")
      * @ORM\OneToOne(targetEntity="Realms\Entity\Tblactiontypes")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="intActionTypeID", referencedColumnName="intActionTypeID")
+     *   @ORM\JoinColumn(name="intActionTypeID", referencedColumnName="intActionTypeID", nullable=true)
      * })
      */
     private $intactiontypeid;
@@ -54,11 +54,10 @@ class Tblactions
      * @ORM\GeneratedValue(strategy="NONE")
      * @ORM\OneToOne(targetEntity="Realms\Entity\Tblprocess")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="intProcessID", referencedColumnName="intProcessID")
+     *   @ORM\JoinColumn(name="intProcessID", referencedColumnName="intProcessID", nullable=true)
      * })
      */
     private $intprocessid;
-
 
 
     /**

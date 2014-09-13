@@ -1,6 +1,6 @@
 <?php
 
-namespace Realms\Entity;
+namespace Api\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -17,7 +17,7 @@ class Tblmodules
      *
      * @ORM\Column(name="intModuleID", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $intmoduleid;
 
@@ -36,11 +36,9 @@ class Tblmodules
     private $intstatus;
 
     /**
-     * @var \Realms\Entity\Tblrealms
+     * @var \Api\Entity\Tblrealms
      *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
-     * @ORM\OneToOne(targetEntity="Realms\Entity\Tblrealms")
+     * @ORM\ManyToOne(targetEntity="Api\Entity\Tblrealms")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="intRealmID", referencedColumnName="intRealmID")
      * })
@@ -48,19 +46,6 @@ class Tblmodules
     private $intrealmid;
 
 
-
-    /**
-     * Set intmoduleid
-     *
-     * @param integer $intmoduleid
-     * @return Tblmodules
-     */
-    public function setIntmoduleid($intmoduleid)
-    {
-        $this->intmoduleid = $intmoduleid;
-
-        return $this;
-    }
 
     /**
      * Get intmoduleid
@@ -121,10 +106,10 @@ class Tblmodules
     /**
      * Set intrealmid
      *
-     * @param \Realms\Entity\Tblrealms $intrealmid
+     * @param \Api\Entity\Tblrealms $intrealmid
      * @return Tblmodules
      */
-    public function setIntrealmid(\Realms\Entity\Tblrealms $intrealmid)
+    public function setIntrealmid(\Api\Entity\Tblrealms $intrealmid = null)
     {
         $this->intrealmid = $intrealmid;
 
@@ -134,7 +119,7 @@ class Tblmodules
     /**
      * Get intrealmid
      *
-     * @return \Realms\Entity\Tblrealms 
+     * @return \Api\Entity\Tblrealms 
      */
     public function getIntrealmid()
     {

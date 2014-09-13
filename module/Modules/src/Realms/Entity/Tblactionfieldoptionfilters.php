@@ -15,7 +15,7 @@ class Tblactionfieldoptionfilters
     /**
      * @var integer
      *
-     * @ORM\Column(name="intActionFieldOptionFilterID", type="integer", nullable=false)
+     * @ORM\Column(name="intActionFieldOptionFilterID", type="integer", precision=0, scale=0, nullable=false, unique=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
      */
@@ -24,23 +24,23 @@ class Tblactionfieldoptionfilters
     /**
      * @var integer
      *
-     * @ORM\Column(name="intAttributeID", type="integer", nullable=true)
+     * @ORM\Column(name="intAttributeID", type="integer", precision=0, scale=0, nullable=true, unique=false)
      */
     private $intattributeid;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="strFilterValue", type="string", length=100, nullable=true)
+     * @ORM\Column(name="strFilterValue", type="string", length=100, precision=0, scale=0, nullable=true, unique=false)
      */
     private $strfiltervalue;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="intStatus", type="integer", nullable=true)
+     * @ORM\Column(name="intStatus", type="integer", precision=0, scale=0, nullable=true, unique=false)
      */
-    private $intstatus = '1';
+    private $intstatus;
 
     /**
      * @var \Realms\Entity\Tblactionfieldoptions
@@ -49,11 +49,10 @@ class Tblactionfieldoptionfilters
      * @ORM\GeneratedValue(strategy="NONE")
      * @ORM\OneToOne(targetEntity="Realms\Entity\Tblactionfieldoptions")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="intActionFieldOptionID", referencedColumnName="intActionFieldOptionID")
+     *   @ORM\JoinColumn(name="intActionFieldOptionID", referencedColumnName="intActionFieldOptionID", nullable=true)
      * })
      */
     private $intactionfieldoptionid;
-
 
 
     /**

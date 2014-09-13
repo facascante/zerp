@@ -18,3 +18,14 @@ var callAjaxRequest = function(method,endpoint,data,cb){
         cb(textStatus);
     });
 };
+var OptionsToHTML = function(value,text,options,content){
+            	var option = "";
+                for(var i =0; i< options.length; i++){
+                	var selected = "";
+               		if(content == options[i][text]){
+               			selected = "selected";
+               		}
+               		option+="<option value="+options[i][value]+" "+selected+">"+options[i][text]+"</option>";
+               	}
+                return option;
+            }

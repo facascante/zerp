@@ -15,7 +15,7 @@ class Tblattributes
     /**
      * @var integer
      *
-     * @ORM\Column(name="intAttributeID", type="integer", nullable=false)
+     * @ORM\Column(name="intAttributeID", type="integer", precision=0, scale=0, nullable=false, unique=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
      */
@@ -24,23 +24,23 @@ class Tblattributes
     /**
      * @var string
      *
-     * @ORM\Column(name="strAttributeName", type="string", length=45, nullable=true)
+     * @ORM\Column(name="strAttributeName", type="string", length=45, precision=0, scale=0, nullable=true, unique=false)
      */
     private $strattributename;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="strAttributeLabel", type="string", length=45, nullable=true)
+     * @ORM\Column(name="strAttributeLabel", type="string", length=45, precision=0, scale=0, nullable=true, unique=false)
      */
     private $strattributelabel;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="intStatus", type="integer", nullable=true)
+     * @ORM\Column(name="intStatus", type="integer", precision=0, scale=0, nullable=true, unique=false)
      */
-    private $intstatus = '1';
+    private $intstatus;
 
     /**
      * @var \Realms\Entity\Tblattributetypes
@@ -49,7 +49,7 @@ class Tblattributes
      * @ORM\GeneratedValue(strategy="NONE")
      * @ORM\OneToOne(targetEntity="Realms\Entity\Tblattributetypes")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="intAttributeTypeID", referencedColumnName="intAttributeTypeID")
+     *   @ORM\JoinColumn(name="intAttributeTypeID", referencedColumnName="intAttributeTypeID", nullable=true)
      * })
      */
     private $intattributetypeid;
@@ -61,11 +61,10 @@ class Tblattributes
      * @ORM\GeneratedValue(strategy="NONE")
      * @ORM\OneToOne(targetEntity="Realms\Entity\Tblobjects")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="intObjectID", referencedColumnName="intObjectID")
+     *   @ORM\JoinColumn(name="intObjectID", referencedColumnName="intObjectID", nullable=true)
      * })
      */
     private $intobjectid;
-
 
 
     /**
