@@ -9,8 +9,14 @@ class CustomersController extends AbstractActionController
 {
 
     public function indexAction()
-    {
-        return new ViewModel();    
+    { 
+      $this->data = array(
+        'module' => 'Customers',
+        'controller' => 'Customers',
+        'action' => 'List',
+        'records' => $this->getEntityManager()->getRepository('Api\Entity\Tblcompany')->findAll()
+      );
+      return new ViewModel($this->data);  
   
     }
 

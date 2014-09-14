@@ -3,8 +3,8 @@ var ajaxCreateRealms = function(data,cb){
 	callAjaxRequest("POST","/api/realms/add",data,cb);
 };
 
-var ajaxEditRealms = function(data,cb){
-	callAjaxRequest("POST","/api/realms/edit",data,cb);
+var ajaxEditRealms = function(data,id,cb){
+	callAjaxRequest("POST","/api/realms/edit/"+id,data,cb);
 };
 
 var ajaxGetReamlTypeOptions = function(cb){

@@ -72,7 +72,7 @@
                                 	 <td><?php echo $this->escapeHtml($record->getIntrealmtypeid()->getStrrealmtype());?></td>
                                 	 <td><?php echo $this->escapeHtml($record->getStrrealmkey());?></td>
                                 	 <td><?php echo $this->escapeHtml($record->getStrrealmsecret());?></td>
-                                	 <td><?php echo $this->escapeHtml($record->getIntstatus());?></td>
+                                	 <td><?php echo $this->escapeHtml($record->getIntstatus()?"Active":"Inactive");?></td>
                                 	 <td><a class="edit" href="javascript:;">Edit</a></td>
                                 	 <td><a class="delete" href="javascript:;">Delete</a></td>
                             	 </tr>
@@ -90,7 +90,6 @@
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="/assets/scripts/core/app.js"></script>
-<script src="/assets/scripts/ajax/users.js"></script>
 <?php 
     $this->inlineScript()
         ->appendFile($this->basePath('/assets/scripts/datatable/realms.index.js'))

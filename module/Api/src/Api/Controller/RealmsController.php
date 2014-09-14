@@ -46,10 +46,11 @@ class RealmsController extends AbstractRestfulController
     public function editRealmAction()
     {
         $request = $this->getRequest();
+        $id = (int) $this->params()->fromRoute('id', 0);
         $realmTypes = $this->getEntityManager()
           ->find('Api\Entity\Tblrealmtypes', $this->getRequest()->getPost('intrealmtypeid'));
         $realms = $this->getEntityManager()
-          ->find('Api\Entity\Tblrealms', $this->getRequest()->getPost('intrealmid'));
+          ->find('Api\Entity\Tblrealms', $id);
         $realms->setStrrealmkey($this->getRequest()->getPost('strrealmkey'));
         $realms->setStrrealmsecret($this->getRequest()->getPost('strrealmsecret'));
         $realms->setIntrealmtypeid($realmTypes);

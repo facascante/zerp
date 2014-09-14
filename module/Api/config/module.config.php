@@ -59,6 +59,17 @@ return array(
                     ),
                 ),
             ),
+            'realms_edit' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route'    => '/api/realms/edit/:id',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Api\Controller',
+                        'controller'    => 'Realms',
+                        'action'     => 'editRealm',
+                    ),
+                ),
+            ),
            'realm_type_list' => array(
                 'type' => 'Literal',
                 'options' => array(
@@ -70,7 +81,7 @@ return array(
                     ),
                 ),
             ),
-          'realm_list' => array(
+            'realm_list' => array(
                 'type' => 'Literal',
                 'options' => array(
                     'route'    => '/api/realms/key/list',

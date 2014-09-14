@@ -9,7 +9,10 @@ var TableEditable = function () {
                 var jqTds = $('>td', nRow);
 
                 for (var i = 0, iLen = jqTds.length; i < iLen; i++) {
-                    oTable.fnUpdate(aData[i], nRow, i, false);
+                    if(aData){
+                      oTable.fnUpdate(aData[i], nRow, i, false);
+                    }
+                    
                 }
 
                 oTable.fnDraw();
@@ -23,7 +26,8 @@ var TableEditable = function () {
                     var statusOption = OptionsToHTML("intstatus","strstatus",
                                [{intstatus:1,strstatus:"Active"},
                                 {intstatus:0,strstatus:"Inactive"}],
-                               aData[1]);
+                               aData[4]);
+                    jqTds[0].innerHTML =  aData[0] ;
                     jqTds[1].innerHTML = '<select class="form-control input-small">'+realmTypeOption+'</select>';
                     jqTds[2].innerHTML = '<input type="text" class="form-control input-medium" value="' + aData[2] + '">';
                     jqTds[3].innerHTML = '<input type="text" class="form-control input-medium" value="' + aData[3] + '">';
@@ -37,9 +41,11 @@ var TableEditable = function () {
             }
 
             function saveRow(oTable, nRow,id) {
+                var jqTds = $('td', nRow);
                 var jqInputs = $('input', nRow);
                 var jqSelect = $('select', nRow);
-                oTable.fnUpdate(id, nRow, 0, false);
+                jqTds[0].innerHTML = id?id:jqTds[0].innerHTML;
+                oTable.fnUpdate(jqTds[0].innerHTML, nRow, 0, false);
                 oTable.fnUpdate(jqSelect[0].options[jqSelect[0].selectedIndex].innerHTML, nRow, 1, false);
                 oTable.fnUpdate(jqInputs[0].value, nRow, 2, false);
                 oTable.fnUpdate(jqInputs[1].value, nRow, 3, false);
@@ -50,14 +56,16 @@ var TableEditable = function () {
             }
 
             function cancelEditRow(oTable, nRow) {
+                var jqTds = $('td', nRow);
                 var jqInputs = $('input', nRow);
-                oTable.fnUpdate(jqInputs[0].value, nRow, 0, false);
-                oTable.fnUpdate(jqInputs[1].value, nRow, 1, false);
-                oTable.fnUpdate(jqInputs[2].value, nRow, 2, false);
-                oTable.fnUpdate(jqInputs[3].value, nRow, 3, false);
-                oTable.fnUpdate(jqInputs[4].value, nRow, 4, false);
-                oTable.fnUpdate(jqInputs[5].value, nRow, 5, false);
-                oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 4, false);
+                var jqSelect = $('select', nRow);
+                oTable.fnUpdate(jqTds[0].innerHTML, nRow, 0, false);
+                oTable.fnUpdate(jqSelect[0].options[jqSelect[0].selectedIndex].innerHTML, nRow, 1, false);
+                oTable.fnUpdate(jqInputs[0].value, nRow, 2, false);
+                oTable.fnUpdate(jqInputs[1].value, nRow, 3, false);
+                oTable.fnUpdate(jqSelect[1].options[jqSelect[1].selectedIndex].innerHTML, nRow, 4, false);
+                oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 5, false);
+                oTable.fnUpdate('<a class="delete" href="">Delete</a>', nRow, 6, false);
                 oTable.fnDraw();
             }
 
@@ -97,6 +105,7 @@ var TableEditable = function () {
                 var aiNew = oTable.fnAddData(['', '', '', '', '',
                         '<a class="edit" href="">Edit</a>', '<a class="cancel new" data-mode="new" href="">Cancel</a>'
                 ]);
+               
                 var nRow = oTable.fnGetNodes(aiNew[0]);
                 editRow(oTable, nRow);
                 nEditing = nRow;
@@ -116,12 +125,14 @@ var TableEditable = function () {
 
             $('#sample_editable_1 a.cancel').live('click', function (e) {
                 e.preventDefault();
-                if ($(this).attr("data-mode") == "new") {
-                    var nRow = $(this).parents('tr')[0];
-                    oTable.fnDeleteRow(nRow);
-                } else {
+               var nRow = $(this).parents('tr')[0];
+                var jqTds = $('td', nRow);
+                if(jqTds[0].innerHTML){
                     restoreRow(oTable, nEditing);
                     nEditing = null;
+                }
+                else{
+                    oTable.fnDeleteRow(nRow);
                 }
             });
 
@@ -138,6 +149,7 @@ var TableEditable = function () {
                     nEditing = nRow;
                 } else if (nEditing == nRow && this.innerHTML == "Save") {
                     /* Editing this row and want to save it */
+                  var jqTds = $('td', nRow);
                 	var jqInputs = $('input', nRow);
                   var jqSelects = $('select', nRow);
                 	var data = {
@@ -146,7 +158,22 @@ var TableEditable = function () {
                 		'strrealmsecret' : jqInputs[1].value,
                 		'intstatus' : jqSelects[1].value
                   };
-                	ajaxCreateRealms(data,function(err,result){
+                  if(jqTds[0].innerHTML){
+                    
+                       var id  = jqTds[0].innerHTML;
+                       ajaxEditRealms(data,id,function(err,result){
+                         if(err){
+                           alert(err);
+                         }
+                         else{
+                           saveRow(oTable, nEditing,id);
+                           nEditing = null;
+                         }
+
+                      });
+                  }
+                  else{
+                    ajaxCreateRealms(data,function(err,result){
                       if(err){
                         alert(err);
                       }
@@ -156,6 +183,8 @@ var TableEditable = function () {
                       }
                     	
                     });
+                  }
+                	
                 } else {
                     /* No edit in progress - let's start one */
                     editRow(oTable, nRow);
