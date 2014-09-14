@@ -55,7 +55,7 @@ return array(
                     'defaults' => array(
                         '__NAMESPACE__' => 'Api\Controller',
                         'controller'    => 'Realms',
-                        'action'     => 'add',
+                        'action'     => 'addRealm',
                     ),
                 ),
             ),
