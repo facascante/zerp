@@ -21,7 +21,7 @@ var TableEditable = function () {
             function editRow(oTable, nRow) {
                 var aData = oTable.fnGetData(nRow);
                 var jqTds = $('>td', nRow);
-                ajaxGetReamlTypeOptions(function(err,result){
+                ajaxGetRealmTypeOptions(function(err,result){
                 		var realmTypeOption = OptionsToHTML("intrealmtypeid","strrealmtype",result.data,aData[1]);
                     var statusOption = OptionsToHTML("intstatus","strstatus",
                                [{intstatus:1,strstatus:"Active"},

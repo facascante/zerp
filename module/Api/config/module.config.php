@@ -31,6 +31,8 @@ return array(
    'controllers' => array(
         'invokables' => array(
             'Api\Controller\Realms' => 'Api\Controller\RealmsController',
+            'Api\Controller\Modules' => 'Api\Controller\ModulesController',
+            'Api\Controller\Person' => 'Api\Controller\PersonController',
         ),
     ),
     'view_manager' => array(
@@ -48,6 +50,50 @@ return array(
     ),
     'router' => array(
         'routes' => array(
+             'person_add' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route'    => '/api/person/add',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Api\Controller',
+                        'controller'    => 'Person',
+                        'action'     => 'addPerson',
+                    ),
+                ),
+            ),
+            'person_edit' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route'    => '/api/person/edit/:id',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Api\Controller',
+                        'controller'    => 'Person',
+                        'action'     => 'editPerson',
+                    ),
+                ),
+            ),
+            'modules_add' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route'    => '/api/modules/add',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Api\Controller',
+                        'controller'    => 'Modules',
+                        'action'     => 'addModules',
+                    ),
+                ),
+            ),
+            'modules_edit' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route'    => '/api/modules/edit/:id',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Api\Controller',
+                        'controller'    => 'Modules',
+                        'action'     => 'editModules',
+                    ),
+                ),
+            ),
             'realms_add' => array(
                 'type' => 'Literal',
                 'options' => array(
@@ -84,11 +130,22 @@ return array(
             'realm_list' => array(
                 'type' => 'Literal',
                 'options' => array(
-                    'route'    => '/api/realms/key/list',
+                    'route'    => '/api/realms/list',
                     'defaults' => array(
                         '__NAMESPACE__' => 'Api\Controller',
                         'controller'    => 'Realms',
                         'action'     => 'getRealmList',
+                    ),
+                ),
+            ),
+            'person_type_list' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route'    => '/api/person/type/list',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Api\Controller',
+                        'controller'    => 'Person',
+                        'action'     => 'getPersonTypeList',
                     ),
                 ),
             ),

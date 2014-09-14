@@ -5,28 +5,28 @@ namespace Api\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Tbladdresstype
+ * Tblsupplierstatus
  *
- * @ORM\Table(name="tblAddressType")
+ * @ORM\Table(name="tblSupplierStatus", uniqueConstraints={@ORM\UniqueConstraint(name="strSupplierStatus_UNIQUE", columns={"strSupplierStatus"})})
  * @ORM\Entity
  */
-class Tbladdresstype
+class Tblsupplierstatus
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="intAddressTypeID", type="integer", nullable=false)
+     * @ORM\Column(name="intSupplierStatusID", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $intaddresstypeid;
+    private $intsupplierstatusid;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="strAddressType", type="string", length=45, nullable=true)
+     * @ORM\Column(name="strSupplierStatus", type="string", length=45, nullable=false)
      */
-    private $straddresstype;
+    private $strsupplierstatus;
 
     /**
      * @var integer
@@ -38,43 +38,43 @@ class Tbladdresstype
 
 
     /**
-     * Get intaddresstypeid
+     * Get intsupplierstatusid
      *
      * @return integer 
      */
-    public function getIntaddresstypeid()
+    public function getIntsupplierstatusid()
     {
-        return $this->intaddresstypeid;
+        return $this->intsupplierstatusid;
     }
 
     /**
-     * Set straddresstype
+     * Set strsupplierstatus
      *
-     * @param string $straddresstype
-     * @return Tbladdresstype
+     * @param string $strsupplierstatus
+     * @return Tblsupplierstatus
      */
-    public function setStraddresstype($straddresstype)
+    public function setStrsupplierstatus($strsupplierstatus)
     {
-        $this->straddresstype = $straddresstype;
+        $this->strsupplierstatus = $strsupplierstatus;
 
         return $this;
     }
 
     /**
-     * Get straddresstype
+     * Get strsupplierstatus
      *
      * @return string 
      */
-    public function getStraddresstype()
+    public function getStrsupplierstatus()
     {
-        return $this->straddresstype;
+        return $this->strsupplierstatus;
     }
 
     /**
      * Set intactive
      *
      * @param integer $intactive
-     * @return Tbladdresstype
+     * @return Tblsupplierstatus
      */
     public function setIntactive($intactive)
     {

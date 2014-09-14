@@ -15,7 +15,9 @@ return array(
         'Products',
         'Customers',
         'Modules',
-        'Api'
+        'Api',
+        'Company',
+        'Person'
     ),
     'module_listener_options' => array(
         'module_paths' => array(

@@ -5,28 +5,28 @@ namespace Api\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Tbladdresstype
+ * Tblproductstatus
  *
- * @ORM\Table(name="tblAddressType")
+ * @ORM\Table(name="tblProductStatus", uniqueConstraints={@ORM\UniqueConstraint(name="strProductStatus_UNIQUE", columns={"strProductStatus"})})
  * @ORM\Entity
  */
-class Tbladdresstype
+class Tblproductstatus
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="intAddressTypeID", type="integer", nullable=false)
+     * @ORM\Column(name="intProductStatusID", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $intaddresstypeid;
+    private $intproductstatusid;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="strAddressType", type="string", length=45, nullable=true)
+     * @ORM\Column(name="strProductStatus", type="string", length=45, nullable=false)
      */
-    private $straddresstype;
+    private $strproductstatus;
 
     /**
      * @var integer
@@ -38,43 +38,43 @@ class Tbladdresstype
 
 
     /**
-     * Get intaddresstypeid
+     * Get intproductstatusid
      *
      * @return integer 
      */
-    public function getIntaddresstypeid()
+    public function getIntproductstatusid()
     {
-        return $this->intaddresstypeid;
+        return $this->intproductstatusid;
     }
 
     /**
-     * Set straddresstype
+     * Set strproductstatus
      *
-     * @param string $straddresstype
-     * @return Tbladdresstype
+     * @param string $strproductstatus
+     * @return Tblproductstatus
      */
-    public function setStraddresstype($straddresstype)
+    public function setStrproductstatus($strproductstatus)
     {
-        $this->straddresstype = $straddresstype;
+        $this->strproductstatus = $strproductstatus;
 
         return $this;
     }
 
     /**
-     * Get straddresstype
+     * Get strproductstatus
      *
      * @return string 
      */
-    public function getStraddresstype()
+    public function getStrproductstatus()
     {
-        return $this->straddresstype;
+        return $this->strproductstatus;
     }
 
     /**
      * Set intactive
      *
      * @param integer $intactive
-     * @return Tbladdresstype
+     * @return Tblproductstatus
      */
     public function setIntactive($intactive)
     {

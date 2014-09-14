@@ -5,28 +5,28 @@ namespace Api\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Tbladdresstype
+ * Tbluom
  *
- * @ORM\Table(name="tblAddressType")
+ * @ORM\Table(name="tblUOM", uniqueConstraints={@ORM\UniqueConstraint(name="strUOM_UNIQUE", columns={"strUOM"})})
  * @ORM\Entity
  */
-class Tbladdresstype
+class Tbluom
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="intAddressTypeID", type="integer", nullable=false)
+     * @ORM\Column(name="intUOMID", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $intaddresstypeid;
+    private $intuomid;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="strAddressType", type="string", length=45, nullable=true)
+     * @ORM\Column(name="strUOM", type="string", length=45, nullable=false)
      */
-    private $straddresstype;
+    private $struom;
 
     /**
      * @var integer
@@ -38,43 +38,43 @@ class Tbladdresstype
 
 
     /**
-     * Get intaddresstypeid
+     * Get intuomid
      *
      * @return integer 
      */
-    public function getIntaddresstypeid()
+    public function getIntuomid()
     {
-        return $this->intaddresstypeid;
+        return $this->intuomid;
     }
 
     /**
-     * Set straddresstype
+     * Set struom
      *
-     * @param string $straddresstype
-     * @return Tbladdresstype
+     * @param string $struom
+     * @return Tbluom
      */
-    public function setStraddresstype($straddresstype)
+    public function setStruom($struom)
     {
-        $this->straddresstype = $straddresstype;
+        $this->struom = $struom;
 
         return $this;
     }
 
     /**
-     * Get straddresstype
+     * Get struom
      *
      * @return string 
      */
-    public function getStraddresstype()
+    public function getStruom()
     {
-        return $this->straddresstype;
+        return $this->struom;
     }
 
     /**
      * Set intactive
      *
      * @param integer $intactive
-     * @return Tbladdresstype
+     * @return Tbluom
      */
     public function setIntactive($intactive)
     {

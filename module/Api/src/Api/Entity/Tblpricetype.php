@@ -5,28 +5,28 @@ namespace Api\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Tbladdresstype
+ * Tblpricetype
  *
- * @ORM\Table(name="tblAddressType")
+ * @ORM\Table(name="tblPriceType", uniqueConstraints={@ORM\UniqueConstraint(name="strPriceType_UNIQUE", columns={"strPriceType"})})
  * @ORM\Entity
  */
-class Tbladdresstype
+class Tblpricetype
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="intAddressTypeID", type="integer", nullable=false)
+     * @ORM\Column(name="intPriceTypeID", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $intaddresstypeid;
+    private $intpricetypeid;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="strAddressType", type="string", length=45, nullable=true)
+     * @ORM\Column(name="strPriceType", type="string", length=45, nullable=false)
      */
-    private $straddresstype;
+    private $strpricetype;
 
     /**
      * @var integer
@@ -38,43 +38,43 @@ class Tbladdresstype
 
 
     /**
-     * Get intaddresstypeid
+     * Get intpricetypeid
      *
      * @return integer 
      */
-    public function getIntaddresstypeid()
+    public function getIntpricetypeid()
     {
-        return $this->intaddresstypeid;
+        return $this->intpricetypeid;
     }
 
     /**
-     * Set straddresstype
+     * Set strpricetype
      *
-     * @param string $straddresstype
-     * @return Tbladdresstype
+     * @param string $strpricetype
+     * @return Tblpricetype
      */
-    public function setStraddresstype($straddresstype)
+    public function setStrpricetype($strpricetype)
     {
-        $this->straddresstype = $straddresstype;
+        $this->strpricetype = $strpricetype;
 
         return $this;
     }
 
     /**
-     * Get straddresstype
+     * Get strpricetype
      *
      * @return string 
      */
-    public function getStraddresstype()
+    public function getStrpricetype()
     {
-        return $this->straddresstype;
+        return $this->strpricetype;
     }
 
     /**
      * Set intactive
      *
      * @param integer $intactive
-     * @return Tbladdresstype
+     * @return Tblpricetype
      */
     public function setIntactive($intactive)
     {

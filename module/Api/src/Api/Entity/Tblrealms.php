@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Tblrealms
  *
- * @ORM\Table(name="tblRealms", indexes={@ORM\Index(name="fk_tblRealms_tblRealmTypes1_idx", columns={"intRealmTypeID"})})
+ * @ORM\Table(name="tblRealms", uniqueConstraints={@ORM\UniqueConstraint(name="strRealmKey_UNIQUE", columns={"strRealmKey"})}, indexes={@ORM\Index(name="fk_tblRealms_tblRealmTypes1_idx", columns={"intRealmTypeID"})})
  * @ORM\Entity
  */
 class Tblrealms
@@ -24,14 +24,14 @@ class Tblrealms
     /**
      * @var string
      *
-     * @ORM\Column(name="strRealmKey", type="string", length=45, nullable=true)
+     * @ORM\Column(name="strRealmKey", type="string", length=45, nullable=false)
      */
     private $strrealmkey;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="strRealmSecret", type="string", length=100, nullable=true)
+     * @ORM\Column(name="strRealmSecret", type="string", length=100, nullable=false)
      */
     private $strrealmsecret;
 

@@ -14,7 +14,10 @@ return array(
         'Realms',
         'Products',
         'Customers',
-        'Modules'
+        'Modules',
+        'Api',
+        'Address',
+        'Company'
     ),
     'module_listener_options' => array(
         'module_paths' => array(

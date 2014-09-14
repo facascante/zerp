@@ -7,16 +7,16 @@ use Zend\View\Model\ViewModel;
 
 class CustomersController extends AbstractActionController
 {
-
+  public function getEntityManager()
+    {
+        if (null === $this->em) {
+                    $this->em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+         }
+         return $this->em;
+    }
     public function indexAction()
     { 
-      $this->data = array(
-        'module' => 'Customers',
-        'controller' => 'Customers',
-        'action' => 'List',
-        'records' => $this->getEntityManager()->getRepository('Api\Entity\Tblcompany')->findAll()
-      );
-      return new ViewModel($this->data);  
+  
   
     }
 

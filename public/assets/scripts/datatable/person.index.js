@@ -21,18 +21,20 @@ var TableEditable = function () {
             function editRow(oTable, nRow) {
                 var aData = oTable.fnGetData(nRow);
                 var jqTds = $('>td', nRow);
-                ajaxGetRealmOptions(function(err,result){
-                		var realmKeyOption = OptionsToHTML("intrealmid","strrealmkey",result.data,aData[2]);
-                    var statusOption = OptionsToHTML("intstatus","strstatus",
-                               [{intstatus:1,strstatus:"Active"},
-                                {intstatus:0,strstatus:"Inactive"}],
-                               aData[3]);
+                ajaxGetPersonTypeOptions(function(err,result){
+                		var personTypeOption = OptionsToHTML("intpersontypeid","strpersontype",result.data,aData[4]);
+                    var activeOption = OptionsToHTML("intactive","stractive",
+                               [{intactive:1,stractive:"Active"},
+                                {intactive:0,stractive:"Inactive"}],
+                               aData[5]);
                     jqTds[0].innerHTML =  aData[0] ;
                     jqTds[1].innerHTML = '<input type="text" class="form-control input-medium" value="' + aData[1] + '">';
-                    jqTds[2].innerHTML = '<select class="form-control input-small">'+realmKeyOption+'</select>';
-                    jqTds[3].innerHTML = '<select class="form-control input-small">'+statusOption+'</select>';
-                    jqTds[4].innerHTML = '<a class="edit" href="">Save</a>';
-                    jqTds[5].innerHTML = '<a class="cancel" href="">Cancel</a>';
+                    jqTds[2].innerHTML = '<input type="text" class="form-control input-medium" value="' + aData[2] + '">';
+                    jqTds[3].innerHTML = '<input type="text" class="form-control input-medium" value="' + aData[3] + '">';
+                    jqTds[4].innerHTML = '<select class="form-control input-small">'+personTypeOption+'</select>';
+                    jqTds[5].innerHTML = '<select class="form-control input-small">'+activeOption+'</select>';
+                    jqTds[6].innerHTML = '<a class="edit" href="">Save</a>';
+                    jqTds[7].innerHTML = '<a class="cancel" href="">Cancel</a>';
                 });
 
                 
@@ -46,10 +48,12 @@ var TableEditable = function () {
                 jqTds[0].innerHTML = id?id:jqTds[0].innerHTML;
                 oTable.fnUpdate(jqTds[0].innerHTML, nRow, 0, false);
                 oTable.fnUpdate(jqInputs[0].value, nRow, 1, false);
-                oTable.fnUpdate(jqSelect[0].options[jqSelect[0].selectedIndex].innerHTML, nRow, 2, false);
-                oTable.fnUpdate(jqSelect[1].options[jqSelect[1].selectedIndex].innerHTML, nRow, 3, false);
-                oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 4, false);
-                oTable.fnUpdate('<a class="delete" href="">Delete</a>', nRow, 5, false);
+                oTable.fnUpdate(jqInputs[1].value, nRow, 2, false);
+                oTable.fnUpdate(jqInputs[2].value, nRow, 3, false); 
+                oTable.fnUpdate(jqSelect[0].options[jqSelect[0].selectedIndex].innerHTML, nRow, 4, false);
+                oTable.fnUpdate(jqSelect[1].options[jqSelect[1].selectedIndex].innerHTML, nRow, 5, false);
+                oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 6, false);
+                oTable.fnUpdate('<a class="delete" href="">Delete</a>', nRow, 7, false);
                 oTable.fnDraw();
             }
 
@@ -57,12 +61,15 @@ var TableEditable = function () {
                 var jqTds = $('td', nRow);
                 var jqInputs = $('input', nRow);
                 var jqSelect = $('select', nRow);
+                jqTds[0].innerHTML = id?id:jqTds[0].innerHTML;
                 oTable.fnUpdate(jqTds[0].innerHTML, nRow, 0, false);
                 oTable.fnUpdate(jqInputs[0].value, nRow, 1, false);
-                oTable.fnUpdate(jqSelect[0].options[jqSelect[0].selectedIndex].innerHTML, nRow, 2, false);
-                oTable.fnUpdate(jqSelect[1].options[jqSelect[1].selectedIndex].innerHTML, nRow, 3, false);
-                oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 4, false);
-                oTable.fnUpdate('<a class="delete" href="">Delete</a>', nRow, 5, false);
+                oTable.fnUpdate(jqInputs[1].value, nRow, 2, false);
+                oTable.fnUpdate(jqInputs[2].value, nRow, 3, false); 
+                oTable.fnUpdate(jqSelect[0].options[jqSelect[0].selectedIndex].innerHTML, nRow, 4, false);
+                oTable.fnUpdate(jqSelect[1].options[jqSelect[1].selectedIndex].innerHTML, nRow, 5, false);
+                oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 6, false);
+                oTable.fnUpdate('<a class="delete" href="">Delete</a>', nRow, 7, false);
                 oTable.fnDraw();
             }
 
@@ -99,7 +106,7 @@ var TableEditable = function () {
 
             $('#sample_editable_1_new').click(function (e) {
                 e.preventDefault();
-                var aiNew = oTable.fnAddData(['', '', '', '',
+                var aiNew = oTable.fnAddData(['', '', '', '', '', '',
                         '<a class="edit" href="">Edit</a>', '<a class="cancel new" data-mode="new" href="">Cancel</a>'
                 ]);
                
@@ -152,13 +159,15 @@ var TableEditable = function () {
                 	var jqInputs = $('input', nRow);
                   var jqSelects = $('select', nRow);
                 	var data = {
-              			'strmodulename' : jqInputs[0].value,
-               			'intrealmid' : jqSelects[0].value,
-                		'intstatus' : jqSelects[1].value
+              			'strpersonname' : jqInputs[0].value,
+                    'strpersonemail' : jqInputs[1].value,
+                    'strpersonphone' : jqInputs[2].value,
+               			'intpersontypeid' : jqSelects[0].value,
+                		'intactive' : jqSelects[1].value
                   };
                   if(jqTds[0].innerHTML){
                        var id  = jqTds[0].innerHTML;
-                       ajaxEditModules(data,id,function(err,result){
+                       ajaxEditPerson(data,id,function(err,result){
                          if(err){
                            alert(err);
                          }
@@ -170,7 +179,7 @@ var TableEditable = function () {
                       });
                   }
                   else{
-                    ajaxCreateModules(data,function(err,result){
+                    ajaxCreatePerson(data,function(err,result){
                       if(err){
                         alert(err);
                       }

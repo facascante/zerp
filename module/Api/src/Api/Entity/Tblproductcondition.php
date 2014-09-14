@@ -5,28 +5,28 @@ namespace Api\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Tblentitytype
+ * Tblproductcondition
  *
- * @ORM\Table(name="tblEntityType")
+ * @ORM\Table(name="tblProductCondition", uniqueConstraints={@ORM\UniqueConstraint(name="strConditionName_UNIQUE", columns={"strConditionName"})})
  * @ORM\Entity
  */
-class Tblentitytype
+class Tblproductcondition
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="intEntityTypeID", type="integer", nullable=false)
+     * @ORM\Column(name="intConditionID", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $intentitytypeid;
+    private $intconditionid;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="strEntityTypeName", type="string", length=45, nullable=false)
+     * @ORM\Column(name="strConditionName", type="string", length=45, nullable=false)
      */
-    private $strentitytypename;
+    private $strconditionname;
 
     /**
      * @var string
@@ -38,43 +38,43 @@ class Tblentitytype
 
 
     /**
-     * Get intentitytypeid
+     * Get intconditionid
      *
      * @return integer 
      */
-    public function getIntentitytypeid()
+    public function getIntconditionid()
     {
-        return $this->intentitytypeid;
+        return $this->intconditionid;
     }
 
     /**
-     * Set strentitytypename
+     * Set strconditionname
      *
-     * @param string $strentitytypename
-     * @return Tblentitytype
+     * @param string $strconditionname
+     * @return Tblproductcondition
      */
-    public function setStrentitytypename($strentitytypename)
+    public function setStrconditionname($strconditionname)
     {
-        $this->strentitytypename = $strentitytypename;
+        $this->strconditionname = $strconditionname;
 
         return $this;
     }
 
     /**
-     * Get strentitytypename
+     * Get strconditionname
      *
      * @return string 
      */
-    public function getStrentitytypename()
+    public function getStrconditionname()
     {
-        return $this->strentitytypename;
+        return $this->strconditionname;
     }
 
     /**
      * Set intactive
      *
      * @param string $intactive
-     * @return Tblentitytype
+     * @return Tblproductcondition
      */
     public function setIntactive($intactive)
     {

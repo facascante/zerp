@@ -7,10 +7,10 @@ var ajaxEditRealms = function(data,id,cb){
 	callAjaxRequest("POST","/api/realms/edit/"+id,data,cb);
 };
 
-var ajaxGetReamlTypeOptions = function(cb){
+var ajaxGetRealmTypeOptions = function(cb){
 	callAjaxRequest(null,"/api/realms/type/list",null,cb);
 };
 
-var ajaxGetUserStatusOptions = function(filter,cb){
-	callAjaxRequest("POST","/account/api/status/list",filter,cb);
+var ajaxGetRealmOptions = function(cb){
+	callAjaxRequest("POST","/api/realms/list",null,cb);
 };

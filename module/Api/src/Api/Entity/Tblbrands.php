@@ -5,28 +5,28 @@ namespace Api\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Tbladdresstype
+ * Tblbrands
  *
- * @ORM\Table(name="tblAddressType")
+ * @ORM\Table(name="tblBrands", uniqueConstraints={@ORM\UniqueConstraint(name="strBrandName_UNIQUE", columns={"strBrandName"})})
  * @ORM\Entity
  */
-class Tbladdresstype
+class Tblbrands
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="intAddressTypeID", type="integer", nullable=false)
+     * @ORM\Column(name="intBrandID", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $intaddresstypeid;
+    private $intbrandid;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="strAddressType", type="string", length=45, nullable=true)
+     * @ORM\Column(name="strBrandName", type="string", length=50, nullable=false)
      */
-    private $straddresstype;
+    private $strbrandname;
 
     /**
      * @var integer
@@ -38,43 +38,43 @@ class Tbladdresstype
 
 
     /**
-     * Get intaddresstypeid
+     * Get intbrandid
      *
      * @return integer 
      */
-    public function getIntaddresstypeid()
+    public function getIntbrandid()
     {
-        return $this->intaddresstypeid;
+        return $this->intbrandid;
     }
 
     /**
-     * Set straddresstype
+     * Set strbrandname
      *
-     * @param string $straddresstype
-     * @return Tbladdresstype
+     * @param string $strbrandname
+     * @return Tblbrands
      */
-    public function setStraddresstype($straddresstype)
+    public function setStrbrandname($strbrandname)
     {
-        $this->straddresstype = $straddresstype;
+        $this->strbrandname = $strbrandname;
 
         return $this;
     }
 
     /**
-     * Get straddresstype
+     * Get strbrandname
      *
      * @return string 
      */
-    public function getStraddresstype()
+    public function getStrbrandname()
     {
-        return $this->straddresstype;
+        return $this->strbrandname;
     }
 
     /**
      * Set intactive
      *
      * @param integer $intactive
-     * @return Tbladdresstype
+     * @return Tblbrands
      */
     public function setIntactive($intactive)
     {
