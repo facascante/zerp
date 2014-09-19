@@ -10,14 +10,14 @@ return array(
         'ZendDeveloperTools',
         'DoctrineModule',
         'DoctrineORMModule',
-        'Application',
         'Realms',
         'Products',
         'Customers',
         'Modules',
         'Api',
         'Company',
-        'Person'
+        'Person',
+        'Security'
     ),
     'module_listener_options' => array(
         'module_paths' => array(
